@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="nav-logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <img src="nav-without-hint.png" class="nav-cta-button">
+        </div>
+    </nav>
+    <div class="hero-section">
+        <div class="nebula-background">
+            <div class="nebula-spot spot-1"></div>
+            <div class="nebula-spot spot-2"></div>
+            <div class="nebula-spot spot-3"></div>
+            <div class="nebula-spot spot-4"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Land your Dream Job, Smarter & Faster</h1>
+            <p class="hero-subtext">AI Powered Job Application, Mock Interviews and Effortless Resume Creation</p>
+            <img src="cta.png" class="cta-button">
+        </div>
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll Down</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </div> 
+    <div class="stats">
+        <div class="stats-background">
+            <img src="stat-image.png" alt="Statistics Background">
+        </div>
+        <div class="stats-content">
+            <img src="stat-text-1.png" class="stat-text">
+            <img src="stat-text-2.png" class="stat-text">
+            <img src="stat-text-3.png" class="stat-text">
+        </div>
+    </div>
+    <div class="features">
+        <div class="feature-section">
+            <img src="features-background-1.png" class="features-background">
+            <div class="features-content">
+                <div class="features-text">
+                    <img src="feature1-text.png" alt="Features Text" class="feature-text-1">
+                </div>
+                <div class="features-image">
+                    <img src="feature1-image.png" alt="Features Image" class="feature-image-1">
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-section">
+            <img src="features-background-2.png" class="features-background">
+            <div class="features-content">
+                <div class="features-text">
+                    <img src="feature2-text.png" alt="Features Text" class="feature-text-2">
+                </div>
+                <div class="features-image">
+                    <img src="feature2-image.png" alt="Features Image" class="feature-image-2">
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-section">
+            <img src="features-background-3.png" class="features-background">
+            <div class="features-content">
+                <div class="features-text">
+                    <img src="feature3-text.png" alt="Features Text" class="feature-text-3">
+                </div>
+                <div class="features-image">
+                    <img src="feature3-image.png" alt="Features Image" class="feature-image-1 feature-image-3">
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-section">
+            <img src="features-background-1.png" class="features-background">
+            <div class="features-content">
+                <div class="features-text">
+                    <img src="feature4-text.png" alt="Features Text" class="feature-text-2 feature-text-4">
+                </div>
+                <div class="features-image">
+                    <img src="feature4-image.png" alt="Features Image" class="feature-image-2 feature-image-4">
+                </div>
+            </div>
+        </div>
+
+        <div class="end-section">
+            <img src="features-background-4.png" class="features-background">
+            <div class="end-content">
+                <img src="end-cta-text.png" class="end-text end-text-1">
+                <img src="end-cta.png" class="end-text end-text-2">
+                <img src="end-msg.png" class="end-text end-text-3">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Custom cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        let mouseX = 0;
+        let mouseY = 0;
+        let dotX = 0;
+        let dotY = 0;
+        let ringX = 0;
+        let ringY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animate() {
+            // Smooth dot movement
+            dotX += (mouseX - dotX) * 0.2;
+            dotY += (mouseY - dotY) * 0.2;
+            cursorDot.style.transform = `translate(${dotX}px, ${dotY}px)`;
+
+            // Smooth ring movement
+            ringX += (mouseX - ringX) * 0.1;
+            ringY += (mouseY - ringY) * 0.1;
+            cursorRing.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Stats section animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const delay = index * 200; // 200ms delay between each text
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.stat-text').forEach(text => {
+            observer.observe(text);
+        });
+
+        // Features section animation
+        const featuresObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe text and images separately
+        document.querySelectorAll('.features-text').forEach(text => {
+            featuresObserver.observe(text);
+        });
+
+        document.querySelectorAll('.feature-image-1, .feature-image-2').forEach(image => {
+            featuresObserver.observe(image);
+        });
+
+        // End section animation
+        const endObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.end-text').forEach(text => {
+            endObserver.observe(text);
+        });
+    </script>
+</body>
+</html>
